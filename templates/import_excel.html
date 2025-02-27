@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Excel Data</title>
+</head>
+<body>
+    <h1>Import Excel Data</h1>
+    <form id="importForm" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".xlsx, .xls">
+        <button type="submit">Import</button>
+    </form>
+    <div id="response"></div>
+
+    <script>
+        document.getElementById('importForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            fetch('/admin/import_excel', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').textContent = data.message || data.error;
+            })
+            .catch(error => {
+                document.getElementById('response').textContent = 'An error occurred: ' + error;
+            });
+        });
+    </script>
+</body>
+</html>

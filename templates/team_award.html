@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>查询队伍获奖等级</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2em;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #fda085;
+            border-radius: 2px;
+        }
+
+        form {
+            margin: 30px 0;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: #fda085;
+            box-shadow: 0 0 8px rgba(253, 160, 133, 0.4);
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .btn-submit {
+            background: #fda085;
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background: #f6d365;
+            transform: translateY(-2px);
+        }
+
+        .btn-home {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .btn-home:hover {
+            background: #34495e;
+            transform: translateY(-2px);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+      <div class="container">
+          <h1>查询队伍获奖等级</h1>
+          <form action="/user/team_award" method="post">
+            <div class="input-group">
+                <input type="text" name="teamId" placeholder="请输入队伍ID" required>
+            </div>
+            <div class="buttons">
+                <button type="submit" class="btn btn-submit">查询</button>
+                <a href="/" class="btn btn-home">返回首页</a>
+            </div>
+         </form>
+        
+      </div>
+    
+    
+</body>
+</html>

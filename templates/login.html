@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录界面</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .button-group {
+            margin-bottom: 25px;
+        }
+
+        .switch-btn {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .switch-btn:hover {
+            background-color: #fda085;
+            color: white;
+        }
+
+        #commonForm, #insertForm {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #fda085;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #fda085;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #f6d365;
+        }
+
+        .register-link {
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .register-link a {
+            color: #fda085;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .register-link a:hover {
+            color: #f6d365;
+        }
+    </style>
+    <script>
+        function showForm(formId) {
+            document.getElementById('commonForm').style.display = 'none';
+            document.getElementById('insertForm').style.display = 'none';
+
+            var formToShow = document.getElementById(formId);
+            if (formToShow) {
+                formToShow.style.display = 'block';
+            }
+        }
+
+        function login(formId) {
+            var username = document.getElementById(formId + 'Name').value;
+            var password = document.getElementById(formId + 'Password').value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/' + formId + 'Login', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.error === 0) {
+                        alert(response.message);
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            };
+            xhr.send('username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password));
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>用户登录</h1>
+        <div class="button-group">
+            <button id="commonUser" class="switch-btn" onclick="showForm('commonForm')">普通用户登录</button>
+            <button id="manager" class="switch-btn" onclick="showForm('insertForm')">管理员登录</button>
+        </div>
+
+        <!-- 普通用户登录表单 -->
+        <div id="commonForm">
+            <form id="userLoginForm" action="/userLogin" method="post">
+                <div class="form-group">
+                    <label for="commonName">用户名</label>
+                    <input type="text" id="commonName" name="commonName" required>
+                </div>
+                <div class="form-group">
+                    <label for="commonPassword">密码</label>
+                    <input type="password" id="commonPassword" name="commonPassword" required>
+                </div>
+                <button type="submit">登录</button>
+            </form>
+        </div>
+
+        <!-- 管理员登录表单 -->
+        <div id="insertForm">
+            <form id="managerLoginForm" action="/adminLogin" method="post">
+                <div class="form-group">
+                    <label for="managerName">管理员用户名</label>
+                    <input type="text" id="managerName" name="managerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="managerPassword">密码</label>
+                    <input type="password" id="managerPassword" name="managerPassword" required>
+                </div>
+                <button type="submit">登录</button>
+            </form>
+        </div>
+
+        <p class="register-link">还没有账号？<a href="{{ url_for('register') }}">注册</a></p>
+    </div>
+</body>
+</html>

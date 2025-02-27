@@ -1,0 +1,100 @@
+-- 创建团队表
+CREATE TABLE Team (
+	NUM INT NOT NULL,
+    TeamID CHAR(7) NOT NULL,     	
+    TeamName VARCHAR(50) ,
+    School VARCHAR(50) ,
+    Category VARCHAR(10) ,
+    ProblemName VARCHAR(100),
+    Score DECIMAL(5, 2),
+    Award VARCHAR(10),
+    CONSTRAINT PK_Team PRIMARY KEY (NUM)
+);
+
+-- 创建成员表
+CREATE TABLE Member (
+	NUM INT NOT NULL,
+    Name VARCHAR(50) NOT NULL,
+    TeamID CHAR(7) NOT NULL,
+    Gender VARCHAR(10) NOT NULL,
+    Phone VARCHAR(20) NOT NULL,
+    University VARCHAR(50) NOT NULL,
+    Role VARCHAR(10) NOT NULL CHECK (Role IN ('队长', '副队长', '队员')),
+    CONSTRAINT PK_Member PRIMARY KEY (NUM)
+);
+
+-- 创建指导老师表
+CREATE TABLE Advisor (
+	NUM INT NOT NULL,
+    AdvisorID VARCHAR(10) NOT NULL,
+    Name VARCHAR(50) NOT NULL,
+    Department VARCHAR(50) NOT NULL,
+    CONSTRAINT PK_Advisor PRIMARY KEY (NUM)
+);
+
+-- 创建A题表
+CREATE TABLE AProblem (
+	NUM INT NOT NULL,
+    ProblemID VARCHAR(10) NOT NULL,
+    ProblemName VARCHAR(100) NOT NULL,
+    Company VARCHAR(50) NOT NULL,
+    CONSTRAINT PK_AProblem PRIMARY KEY (NUM)
+);
+
+-- 创建B题表
+CREATE TABLE BProblem (
+	NUM INT NOT NULL,
+    ProblemID VARCHAR(10) NOT NULL,
+    ProblemName VARCHAR(100) NOT NULL,
+    CONSTRAINT PK_BProblem PRIMARY KEY (NUM)
+);
+
+-- 创建专家表
+CREATE TABLE Expert (
+	NUM INT NOT NULL,
+    ExpertID VARCHAR(10) NOT NULL,
+    Name VARCHAR(50) NOT NULL,
+    Department VARCHAR(50) NOT NULL,
+    CONSTRAINT PK_Expert PRIMARY KEY (NUM)
+);
+
+-- 创建评审信息表
+CREATE TABLE ReviewInfo (
+	NUM INT NOT NULL,
+    ReviewID VARCHAR(10) NOT NULL,
+    ExpertID VARCHAR(10) NOT NULL,
+    TeamID CHAR(7) NOT NULL,
+    Score DECIMAL(5, 2) NOT NULL,
+    Category VARCHAR(5) NOT NULL,
+    CONSTRAINT PK_ReviewInfo PRIMARY KEY (NUM)
+);
+
+CREATE TABLE IF NOT EXISTS users (
+    username VARCHAR(255) PRIMARY KEY,
+    password VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS managers (
+    username VARCHAR(255) PRIMARY KEY,
+    password VARCHAR(255)
+);
+
+-- 创建管理员用户
+CREATE USER admin with password '123456';
+
+-- 赋予管理员所有权限
+GRANT ALL PRIVILEGES ON DATABASE TO admin;
+
+-- 创建普通用户
+CREATE USER user with password '123456';
+
+-- 赋予普通用户基本的INSERT, UPDATE, SELECT权限
+GRANT INSERT, UPDATE, SELECT ON TABLE Team TO user;
+GRANT INSERT, UPDATE, SELECT ON TABLE Member TO user;
+GRANT INSERT, UPDATE, SELECT ON TABLE Advisor TO user;
+GRANT INSERT, UPDATE, SELECT ON TABLE AProblem TO user;
+GRANT INSERT, UPDATE, SELECT ON TABLE BProblem TO user;
+GRANT INSERT, UPDATE, SELECT ON TABLE Expert TO user;
+GRANT INSERT, UPDATE, SELECT ON TABLE ReviewInfo TO user;
+GRANT INSERT, UPDATE, SELECT ON TABLE AProblem TO user;
+

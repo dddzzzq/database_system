@@ -1,0 +1,3 @@
+INSERT INTO USERS (USERNAME, PASSWORD) 
+VALUES ('system_user1', '001');
+

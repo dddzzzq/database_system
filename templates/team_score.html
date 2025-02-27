@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Scores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #scores {
+            margin-top: 20px;
+        }
+        .score-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .score-list li {
+            background-color: #f2f2f2;
+            margin-bottom: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .score-list li:nth-child(even) {
+            background-color: #e7e7e7;
+        }
+        .score-list li span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Team Scores</h1>
+    <button onclick="getTeamScores()">Get Scores</button>
+    <div id="scores"></div>
+
+    <script>
+        function getTeamScores() {
+            fetch('/user/team_score')
+            .then(response => response.json())
+            .then(data => {
+                var scoresHtml = '<ul class="score-list">';
+                data.forEach(item => {
+                    scoresHtml += `<li><span>Team ID:</span> ${item.TeamID} - <span>Score:</span>${item.SCORE}</li>`;
+                });
+                scoresHtml += '</ul>';
+                document.getElementById('scores').innerHTML = scoresHtml;
+            })
+            .catch(error => {
+                document.getElementById('scores').textContent = 'An error occurred: ' + error.message;
+            });
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>团队获奖情况</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            min-height: 100vh;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .jumbotron {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-top: 180px;
+        }
+
+        .display-4 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .lead {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        hr.my-4 {
+            border-top: 2px solid rgba(0,0,0,0.1);
+            margin: 30px 0;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #34495e;
+        }
+
+        p strong {
+            color: #2c3e50;
+            margin-right: 10px;
+        }
+
+        .btn-primary {
+            background-color: #fda085;
+            border: none;
+            padding: 10px 25px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn-primary:hover {
+            background-color: #f6d365;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-home {
+            color:white;
+            background-color: #2c3e50;
+            border: none;
+            padding: 10px 25px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        
+        }
+
+        .btn-home:hover {
+            background-color: #34495e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .display-4 {
+                font-size: 2em;
+            }
+            
+            .jumbotron {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">团队获奖详情</h1>
+            
+            <hr class="my-4">
+            <p><strong>团队ID:</strong> {{ team_id }}</p>
+            <p><strong>团队名:</strong> {{ team_name }}</p>
+            <p><strong>获奖情况:</strong> {{ award }}</p>
+            <a class="btn btn-primary btn-lg" href="/team_ward/index" role="button">返回继续检索</a>
+            <a class="btn btn-home btn-lg" href="/home" role="button">返回首页</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

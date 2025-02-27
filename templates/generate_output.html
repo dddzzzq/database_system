@@ -1,0 +1,194 @@
+·<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>团队获奖信息</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.staticfile.org/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .table th.first {
+            background-color: #fda085;
+            color: white;
+            font-weight: 500;
+            border: none;
+            padding: 15px;
+            width: 25%;
+        }
+
+        .table th.second {
+            background-color: #ee977e;
+            color: white;
+            font-weight: 500;
+            border: none;
+            padding: 15px;
+            width: 25%;
+        }
+
+
+        .table td {
+            padding: 15px;
+            color: #2c3e50;
+            border-color: #eee;
+        }
+
+
+        .table tr:hover {
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+
+        .btn-primary {
+            background-color: #2c3e50;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        
+
+        .btn-primary:hover {
+            background-color: #34495e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .return-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .info-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .info-header i {
+            font-size: 2em;
+            color: #3498db;
+            margin-right: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .table th, .table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="info-header">
+                
+                <h1>电子证书信息表</h1>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th class ="first" scope="row">队伍号</th>
+                            <td>{{ data['队伍号'] }}</td>
+                        </tr>
+                        <tr>
+                            <th class ="second" scope="row">队伍名</th>
+                            <td>{{ data['队伍名'] }}</td>
+                        </tr>
+                        <tr>
+                            <th class ="first" scope="row">得分</th>
+                            <td>{{ data['得分'] }}</td>
+                        </tr>
+                        <tr>
+                            <th  class ="second" scope="row">获奖情况</th>
+                            <td>{{ data['获奖情况'] }}</td>
+                        </tr>
+                        <tr>
+                            <th class ="first" scope="row">赛题类别</th>
+                            <td>{{ data['赛题类别'] }}</td>
+                        </tr>
+                        <tr>
+                            <th  class ="second" scope="row">赛题名</th>
+                            <td>{{ data['赛题名'] }}</td>
+                        </tr>
+                        <tr>
+                            <th  class ="first" scope="row">所属学校</th>
+                            <td>{{ data['所属学校'] }}</td>
+                        </tr>
+                        <tr>
+                            <th  class ="second" scope="row">团队成员</th>
+                            <td>{{ data['团队成员'] }}</td>
+                        </tr>
+                        <tr>
+                            <th  class ="first" scope="row">指导老师</th>
+                            <td>{{ data['指导老师'] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="return-section">
+                <a class="btn btn-primary" href="generate/index">
+                    <i class="fas fa-home mr-2"></i>返回首页
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

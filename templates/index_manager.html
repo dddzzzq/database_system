@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>团队信息管理系统（管理员视图）</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        
+      
+        
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .menu-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-item a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 1.1em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .menu-item i {
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: #3498db;
+        }
+
+        .description {
+            margin-top: 15px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        footer {
+        text-align: center;
+        padding: 20px;
+        margin-top: 50px;
+        color: #7f8c8d;
+    }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .menu-grid {
+                gap: 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>创赛结果查询</h1>
+            <div class="subtitle">高效管理 · 精准统计 · 便捷服务</div>
+        </header>
+
+        <div class="menu-grid">
+            <div class="menu-item">
+                <i class="fas fa-trophy"></i>
+                <a href="{{ url_for('operation_input.operation_input_index') }}">管理员操作</a>
+                <div class="description">管理员使用sql语句直接对数据库操作</div>
+            </div>
+
+            <div class="menu-item">
+                <i class="fas fa-trophy"></i>
+                <a href="{{ url_for('import_excel') }}">导入excel表格</a>
+                <div class="description">导入各参赛团队的获奖等级及相关评定信息</div>
+            </div>
+
+            <div class="menu-item">
+                <i class="fas fa-trophy"></i>
+                <a href="{{ url_for('team_award.input_teamId_index') }}">查看团队获奖等级</a>
+                <div class="description">查询各参赛团队的获奖等级及相关评定信息</div>
+            </div>
+
+            <div class="menu-item">
+                <i class="fas fa-chart-bar"></i>
+                <a href="{{ url_for('team_score') }}">查询各团队最终得分</a>
+                <div class="description">查看团队评分详情及总分排名情况</div>
+            </div>
+
+            <div class="menu-item">
+                <i class="fas fa-info-circle"></i>
+                <a href="{{ url_for('team_details.team_detail_index') }}">查询获奖团队详情信息</a>
+                <div class="description">获取获奖团队的详细资料及联系方式</div>
+            </div>
+
+            <div class="menu-item">
+                <i class="fas fa-certificate"></i>
+                <a href="{{ url_for('generate.generate_index') }}">生成电子证书信息表</a>
+                <div class="description">一键生成团队成员电子版获奖证书</div>
+            </div>
+
+            <div class="menu-item">
+                <i class="fas fa-chart-bar"></i>
+                <a href="{{ url_for('main') }}">退出登录</a>
+                <div class="description"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>©  逐梦华清团队信息管理系统 </p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
